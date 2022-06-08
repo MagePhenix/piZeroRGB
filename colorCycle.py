@@ -18,6 +18,8 @@ class colorCycle:
         self.__cycleLenth = len(self.__colorCycle)
         self.brightness = brightness
 
+        self.__direction = -1
+        self.__switchDirectionNextCycle = False
         self.__index = 1
         self.__endTime = time.time()
 
@@ -55,6 +57,9 @@ class colorCycle:
 
         self.__colorCycle = tuple(self.__colorCycle)
     
+    def switchDirection(self) -> None:
+        self.__switchDirectionNextCycle = True
+
     def getStep(self, length:int = None, whiteValue:float = 0) -> List[Tuple]:
         """
         Returns a list of color values based on the internal percent
@@ -68,8 +73,11 @@ class colorCycle:
 
         if percent >= 1:
 
+            # if self.__switchDirectionNextCycle:
+
+
             #increment the index
-            self.__index = (self.__index + 1) % self.__cycleLenth
+            self.__index = (self.__index + (self.__direction * -1)) % self.__cycleLenth
 
             #sets the time the the current step will end
             self.__endTime = time.time() + self.cycleTime
@@ -83,8 +91,8 @@ class colorCycle:
         #create a color list of the passed length
         for i in range(length):
 
-            currentColor = self.__colorCycle[(i - self.__index) % self.__cycleLenth]
-            nextColor = self.__colorCycle[(i - (self.__index + 1)) % self.__cycleLenth]
+            currentColor = self.__colorCycle[(i + (self.__index * self.__direction)) % self.__cycleLenth]
+            nextColor = self.__colorCycle[(i + ((self.__index + 1) * self.__direction)) % self.__cycleLenth]
 
             rgbVals = []
 
