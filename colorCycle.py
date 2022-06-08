@@ -18,7 +18,7 @@ class colorCycle:
         self.__cycleLenth = len(self.__colorCycle)
         self.brightness = brightness
 
-        self.__index = -1
+        self.__index = 1
         self.__endTime = time.time()
 
     def __buildColorCycle(self)  -> None:
@@ -69,13 +69,13 @@ class colorCycle:
         if percent >= 1:
 
             #increment the index
-            self.__index = (self.__index + 1) % self.__cycleLenth
+            self.__index = (self.__index - 1) % self.__cycleLenth
 
             #sets the time the the current step will end
             self.__endTime = time.time() + self.cycleTime
 
             #returns the colors for the start of the current step
-            return [self.__colorCycle[(i % self.__cycleLenth)] for i in range(length)]
+            return [self.__colorCycle[(i % self.__cycleLenth)] for i in range(0, length, -1)]
 
         colorList = []
 
