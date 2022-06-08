@@ -13,6 +13,6 @@ while True:
 
     for i,p in enumerate(pixels):
 
-        p = step[i % len(step)]
+        pixels[i] = step[i % len(step)]
 
     pixels.show()
