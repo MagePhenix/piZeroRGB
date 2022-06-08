@@ -75,7 +75,7 @@ class colorCycle:
             self.__endTime = time.time() + self.cycleTime
 
             #returns the colors for the start of the current step
-            return [self.__colorCycle[(i % self.__cycleLenth)] for i in range(0, length, -1)]
+            return [self.__colorCycle[(i % self.__cycleLenth)] for i in range(length - 1, -1, -1)]
 
         colorList = []
 
