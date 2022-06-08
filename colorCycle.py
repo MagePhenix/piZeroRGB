@@ -73,7 +73,9 @@ class colorCycle:
 
         if percent >= 1:
 
-            # if self.__switchDirectionNextCycle:
+            if self.__switchDirectionNextCycle:
+                self.__direction *= -1
+                self.__switchDirectionNextCycle = False
 
 
             #increment the index

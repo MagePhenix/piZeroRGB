@@ -8,7 +8,8 @@ rgbCycle = colorCycle(["red", "green", "blue"], .1, 3, 15, brightness=.4)
 
 pixels = NeoPixel(board.D18, 118, auto_write=False, bpp=4)
 
-endTime = 10 + time()
+endTime = 5 + time()
+count = 0
 
 while time() < endTime:
 
@@ -19,8 +20,10 @@ while time() < endTime:
         pixels[i] = step[i % len(step)]
 
     pixels.show()
+    count += 1
 
 rgbCycle.switchDirection()
+print(count)
 
 while True:
 
