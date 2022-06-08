@@ -70,7 +70,7 @@ class colorCycle:
         if percent >= 1:
 
             #increment the index
-            self.__index = (self.__index + 1) % self.__cycleLenth
+            self.__index = (self.__index + self.direction) % self.__cycleLenth
 
             #sets the time the the current step will end
             self.__endTime = time.time() + self.cycleTime
