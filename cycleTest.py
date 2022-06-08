@@ -4,7 +4,7 @@ from neopixel import NeoPixel
 import board
 
 
-rgbCycle = colorCycle(["red", "blue"], 1, 3, 0, brightness=.4, direction=1)
+rgbCycle = colorCycle(["red", "blue"], 1, 3, 0, brightness=.4)
 
 pixels = NeoPixel(board.D18, 59, auto_write=False, bpp=4)
 print(len(pixels))
