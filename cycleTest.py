@@ -3,15 +3,16 @@ from neopixel import NeoPixel
 import board
 
 
-rgbCycle = colorCycle(["red", "green", "blue"], 2, 5, 10, brightness=.4)
+rgbCycle = colorCycle(["red", "green", "blue"], 2, 5, 3, brightness=.4)
 
 pixels = NeoPixel(board.D18, 59, auto_write=False, bpp=4)
 
 while True:
 
     step = rgbCycle.getStep()
+    print(step)
 
-    for i,p in enumerate(pixels):
+    for i in range(len(pixels)):
 
         pixels[i] = step[i % len(step)]
 
