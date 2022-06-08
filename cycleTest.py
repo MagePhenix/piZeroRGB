@@ -4,9 +4,9 @@ from neopixel import NeoPixel
 import board
 
 
-rgbCycle = colorCycle(["red", "green", "blue"], 1, 3, 7, brightness=.4)
+rgbCycle = colorCycle(["red", "green", "blue"], .5, 3, 15, brightness=.4)
 
-pixels = NeoPixel(board.D18, 59, auto_write=False, bpp=4)
+pixels = NeoPixel(board.D18, 118, auto_write=False, bpp=4)
 
 while True:
 
