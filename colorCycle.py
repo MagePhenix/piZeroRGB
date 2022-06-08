@@ -75,7 +75,7 @@ class colorCycle:
             self.__endTime = time.time() + self.cycleTime
 
             #returns the colors for the start of the current step
-            return [self.__colorCycle[(i % self.__cycleLenth)] for i in range(length - 1, -1, -1)]
+            return [self.__colorCycle[(i % self.__cycleLenth)] for i in range(length)]
 
         colorList = []
 
@@ -102,4 +102,5 @@ class colorCycle:
 # rgbCycle = colorCycle(["red", "blue"], 1, 3, 0, brightness=.4)
 
 # while True:
-#     rgbCycle.getStep()
+#     print(rgbCycle.getStep())
+#     time.sleep(.1)
