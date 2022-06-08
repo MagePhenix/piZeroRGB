@@ -70,7 +70,7 @@ class colorCycle:
         if percent >= 1:
 
             #increment the index
-            self.__index = (self.__index + self.direction) % self.__cycleLenth
+            self.__index = (self.__index + 1) % self.__cycleLenth
 
             #sets the time the the current step will end
             self.__endTime = time.time() + self.cycleTime
@@ -83,14 +83,14 @@ class colorCycle:
         #create a color list of the passed length
         for i in range(length):
 
-            currentColor = self.__colorCycle[(i + (self.direction * self.__index)) % self.__cycleLenth]
-            nextColor = self.__colorCycle[(i + (self.direction * (self.__index + 1))) % self.__cycleLenth]
+            currentColor = self.__colorCycle[(i + self.__index) % self.__cycleLenth]
+            nextColor = self.__colorCycle[(i - (self.__index + 1)) % self.__cycleLenth]
 
             rgbVals = []
 
             #loop over RGB
             for j in range(3):
-                rgbVals.append(int(currentColor[j] + (percent * (nextColor[j] - currentColor[j])) * self.brightness))
+                rgbVals.append(int((currentColor[j] + (percent * (nextColor[j] - currentColor[j]))) * self.brightness))
 
             #add white value
             rgbVals.append(whiteValue)
@@ -99,3 +99,8 @@ class colorCycle:
             colorList.append(tuple(rgbVals))
                 
         return colorList
+
+# rgbCycle = colorCycle(["red", "blue"], 1, 3, 0, brightness=.4)
+
+# while True:
+#     rgbCycle.getStep()
