@@ -66,6 +66,7 @@ class colorCycle:
 
         #how far between transitions
         percent = time.time() / self.__endTime
+        print(percent)
 
         if percent >= 1:
 
@@ -97,5 +98,7 @@ class colorCycle:
 
             #add the color to the list
             colorList.append(tuple(rgbVals))
+        
+        print(colorList[0])
         
         return colorList

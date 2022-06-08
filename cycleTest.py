@@ -10,7 +10,6 @@ pixels = NeoPixel(board.D18, 59, auto_write=False, bpp=4)
 while True:
 
     step = rgbCycle.getStep()
-    print(step)
 
     for i in range(len(pixels)):
 
