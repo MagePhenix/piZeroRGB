@@ -8,12 +8,11 @@ import time
 
 class colorCycle:
 
-    def __init__(self, colors: List, cycleTime: int = 1, width: int = 1, step: int = 1, direction: int = -1, brightness:float = 1) -> None:
+    def __init__(self, colors: List, cycleTime: int = 1, width: int = 1, step: int = 1, brightness:float = 1) -> None:
         self.__colorList = colorManagement.listToRGBList(colors)
         self.cycleTime = cycleTime
         self.__width = width
         self.__step = step
-        self.direction = direction
         self.__colorCycle = []
         self.__buildColorCycle()
         self.__cycleLenth = len(self.__colorCycle)
@@ -66,6 +65,7 @@ class colorCycle:
 
         #how far between transitions
         percent =  1 - ((self.__endTime - time.time()) / self.cycleTime)
+        print(percent)
 
         if percent >= 1:
 
@@ -83,7 +83,7 @@ class colorCycle:
         #create a color list of the passed length
         for i in range(length):
 
-            currentColor = self.__colorCycle[(i + self.__index) % self.__cycleLenth]
+            currentColor = self.__colorCycle[(i - self.__index) % self.__cycleLenth]
             nextColor = self.__colorCycle[(i - (self.__index + 1)) % self.__cycleLenth]
 
             rgbVals = []
@@ -100,7 +100,7 @@ class colorCycle:
                 
         return colorList
 
-# rgbCycle = colorCycle(["red", "blue"], 1, 3, 0, brightness=.4)
+rgbCycle = colorCycle(["red", "blue"], 1, 3, 0, brightness=.4)
 
-# while True:
-#     rgbCycle.getStep()
+while True:
+    rgbCycle.getStep()
