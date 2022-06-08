@@ -82,8 +82,8 @@ class colorCycle:
         #create a color list of the passed length
         for i in range(length):
 
-            currentColor = self.__colorCycle[(i + self.__index) % self.__cycleLenth]
-            nextColor = self.__colorCycle[(i + (self.__index + 1)) % self.__cycleLenth]
+            currentColor = self.__colorCycle[(i - self.__index) % self.__cycleLenth]
+            nextColor = self.__colorCycle[(i - (self.__index + 1)) % self.__cycleLenth]
 
             rgbVals = []
 
