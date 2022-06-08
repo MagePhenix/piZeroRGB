@@ -65,7 +65,6 @@ class colorCycle:
 
         #how far between transitions
         percent =  1 - ((self.__endTime - time.time()) / self.cycleTime)
-        print(percent)
 
         if percent >= 1:
 
@@ -100,7 +99,7 @@ class colorCycle:
                 
         return colorList
 
-rgbCycle = colorCycle(["red", "blue"], 1, 3, 0, brightness=.4)
+# rgbCycle = colorCycle(["red", "blue"], 1, 3, 0, brightness=.4)
 
-while True:
-    rgbCycle.getStep()
+# while True:
+#     rgbCycle.getStep()
