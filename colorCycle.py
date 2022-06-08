@@ -65,7 +65,7 @@ class colorCycle:
             length = self.__cycleLenth
 
         #how far between transitions
-        percent =  abs((self.__endTime - time.time()) / self.cycleTime)
+        percent =  1 - ((self.__endTime - time.time()) / self.cycleTime)
 
         if percent >= 1:
 
