@@ -39,6 +39,7 @@ class serialMonitor:
 
 def updateInputs():
     while True:
+        global inputs
         inputs = serialPort.readSerial()
 
 class ledController:
