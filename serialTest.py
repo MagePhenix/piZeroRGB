@@ -13,8 +13,8 @@ class serialMonitor:
         # self.ser.write(input.encode('utf-8'))
 
         self.ser.reset_input_buffer()
-        input = self.ser.readline()
-        inputArr = input.decode("utf-8")[:-2].split(',')
+        data = self.ser.readline()
+        inputArr = data.decode("utf-8")[:-2].split(',')
 
         self.data = inputArr
 
@@ -22,12 +22,10 @@ class serialMonitor:
 
 mon = serialMonitor()
 
-ser = serial.Serial('/dev/serial0', 1152000, timeout=1)
-
 end = time.time() + .1
 
 while True:
 
     if(time.time() > end):
-        print(ser.read_until().decode("utf-8"))
+        print(mon.getValues())
         end = time.time() + .1
