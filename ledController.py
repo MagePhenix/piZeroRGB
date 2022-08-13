@@ -28,7 +28,7 @@ class serialMonitor:
         rawData = self.__ser.readline()
 
         #transform data into array
-        dataArr = rawData.decode("utf-8")[:-2].split(',')
+        dataArr = rawData.decode("utf-8")[:-1].split(',')
 
         print(dataArr)
 
