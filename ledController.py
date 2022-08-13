@@ -1,5 +1,3 @@
-from collections import defaultdict
-from typing import List
 import colorCycle, colorManagement, serial, time, board
 from neopixel import NeoPixel
 from threading import Thread
@@ -36,6 +34,7 @@ class serialMonitor:
 
             self.__data[name] = value
 
+        print(self.__data)
         return self.__data
 
 def updateInputs():
@@ -102,4 +101,7 @@ inputThrd.start()
 while True:
 
     leds.update()
+
+    time.sleep(.3)
+
 
