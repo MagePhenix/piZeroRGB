@@ -6,7 +6,7 @@ class serialMonitor:
 
     def __init__(self) -> None:
         self.lastChecked = time.time_ns() - (1000000 * 100)
-        self.ser = serial.Serial('/dev/serial0', 115200, timeout=1)
+        self.ser = serial.Serial('/dev/serial0', 1152000, timeout=1)
         self.data = ""
 
     def getValues(self, input = '0'):
@@ -22,7 +22,7 @@ class serialMonitor:
 
 mon = serialMonitor()
 
-ser = serial.Serial('/dev/serial0', 115200, timeout=1)
+ser = serial.Serial('/dev/serial0', 1152000, timeout=1)
 
 while True:
 
