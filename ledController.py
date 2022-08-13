@@ -65,6 +65,8 @@ class ledController:
         if self.__inputData['button0']:
             self.__updateIndex += 1
 
+        print(self.__updateIndex)
+
         #run the update function
         self.__modes[self.__updateIndex]()
 
@@ -87,12 +89,9 @@ class ledController:
 
         #add rgb colors
         for i in range(2, -1, -1):
-            print(i)
             color.append(self.__inputData[f"pot{i}"] * 255)
         
         color.append(255 * self.__solidWhite)
-
-        print(color)
 
         self.__pixels.fill(color)
 
