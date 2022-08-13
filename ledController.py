@@ -106,6 +106,8 @@ class ledController:
     def update(self) -> None:
 
         self.__updateInputs()
+
+        print(self.cleanedInputs['button0'].val)
         
         #change mode if the first button is pressed
         if self.cleanedInputs['button0'].val:
