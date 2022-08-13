@@ -21,9 +21,10 @@ class serialMonitor:
         self.__lastChecked = time.time_ns()
 
         #send request for data
-        self.__ser.write(input.encode('utf-8'))
+        # self.__ser.write(input.encode('utf-8'))
 
         #read data
+        self.__ser.reset_input_buffer()
         rawData = self.__ser.readline()
 
         #transform data into array
