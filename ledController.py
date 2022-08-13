@@ -112,7 +112,7 @@ class ledController:
         if self.inputs['button0'] == "True":
             self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes)
 
-        print(self.__updateIndex)
+        print(self.inputs['button0'])
 
         #run the update function
         self.__modes[self.__updateIndex]()
