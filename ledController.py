@@ -30,6 +30,8 @@ class serialMonitor:
         #transform data into array
         dataArr = rawData.decode("utf-8")[:-2].split(',')
 
+        print(dataArr)
+
         #process data into dictonary
         for i in dataArr:
             name,value = i.split(':')[:2]
