@@ -15,7 +15,7 @@ class serialMonitor:
 
         # self.ser.write(input.encode('utf-8'))
 
-        self.ser.flush()
+        self.ser.reset_input_buffer()
         input = self.ser.readline()
         inputArr = input.decode("utf-8")[:-2].split(',')
 
