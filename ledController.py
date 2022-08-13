@@ -1,3 +1,4 @@
+from xmlrpc.client import Boolean
 import colorCycle, colorManagement, serial, time, board
 from neopixel import NeoPixel
 from threading import Thread
@@ -37,6 +38,29 @@ class serialMonitor:
         print(self.__data)
         return self.__data
 
+class button:
+    def __init__(self) -> None:
+        self.__prevState = False
+
+    def getVal(self, val) -> Boolean:
+        if ((val == "True") & self.__prevState != True):
+            self.__prevState = True
+            return True
+        else:
+            if val == "False":
+                self.__prevState = False
+
+            return False
+
+class pot:
+    def getVal(self, val) -> float:
+
+        try:
+            return float(val)
+        
+        except:
+            return 0
+
 def updateInputs():
     while True:
         global inputs
@@ -57,10 +81,28 @@ class ledController:
 
         self.__solidWhite = 0
 
+        self.__setInputs()
+
+    def __setInputs(self):
+        self.cleanedInputs = {}
+
+        for i in inputs.keys():
+            if "pot" in i:
+                self.cleanedInputs[i] = pot()
+            else:
+                self.cleanedInputs[i] = button()
+
+    def __updateInputs(self):
+
+        for i in inputs.keys():
+            self.cleanedInputs[i].update(inputs[i])
+
     def update(self) -> None:
+
+        self.__updateInputs()
         
         #change mode if the first button is pressed
-        if (inputs['button0'] == "True"):
+        if self.cleanedInputs['button0']:
             self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes) 
 
         #run the update function
@@ -79,7 +121,7 @@ class ledController:
     def __solidcolor(self) -> None:
         
         #turns the white on or off
-        if inputs["button3"] == "True":
+        if self.cleanedInputs["button3"]:
             self.__solidWhite = (self.__solidWhite + 1) % 2
 
         #empty array to store color
@@ -87,7 +129,7 @@ class ledController:
 
         #add rgb colors
         for i in range(2, -1, -1):
-            color.append(float(inputs[f"pot{i}"]) * 255)
+            color.append(self.cleanedInputs[f"pot{i}"] * 255)
         
         color.append(255 * self.__solidWhite)
 
