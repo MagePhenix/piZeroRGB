@@ -41,30 +41,30 @@ class serialMonitor:
 class button:
     def __init__(self) -> None:
         self.__prevState = False
-        val = False
+        self.val = False
 
-    def getVal(self, val) -> Boolean:
-        if ((val == "True") & self.__prevState != True):
+    def getVal(self, newVal) -> Boolean:
+        if ((newVal == "True") & self.__prevState != True):
             self.__prevState = True
-            val = True
+            self.val = True
         else:
-            if val == "False":
+            if newVal == "False":
                 self.__prevState = False
 
-            val = False
+            self.val = False
 
 class pot:
 
     def __init__(self) -> None:
-        val = 0
+        self.val = 0
 
     def getVal(self, val) -> float:
 
         try:
-            val = float(val)
+            self.val = float(val)
         
         except:
-            val = 0
+            self.val = 0
 
 def updateInputs():
     while True:
