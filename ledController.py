@@ -146,3 +146,5 @@ while True:
 
     leds.update()
 
+    time.sleep(.1)
+
