@@ -64,7 +64,7 @@ class ledController:
         print(self.__updateIndex)
 
         #change mode if the first button is pressed
-        if (self.__inputData['button0'] == "False"):
+        if (self.__inputData['button0'] == "True"):
             self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes) 
 
         #run the update function
