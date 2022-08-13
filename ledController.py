@@ -2,6 +2,7 @@ from collections import defaultdict
 from typing import List
 import colorCycle, colorManagement, serial, time, board
 from neopixel import NeoPixel
+from threading import Thread
 
 class serialMonitor:
 
@@ -41,7 +42,8 @@ class serialMonitor:
 
         return self.__data
 
-inputs = serialMonitor()
+def updateInputs():
+    inputs = serialPort.readSerial()
 
 class ledController:
 
@@ -56,17 +58,12 @@ class ledController:
 
         self.__updateIndex = 0
 
-        self.__inputData = inputs.readSerial()
-
         self.__solidWhite = 0
 
     def update(self) -> None:
         
-        #read in inputs
-        self.__inputData = inputs.readSerial()
-
         #change mode if the first button is pressed
-        if (self.__inputData['button0'] == "True"):
+        if (inputs['button0'] == "True"):
             self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes) 
 
         #run the update function
@@ -83,7 +80,7 @@ class ledController:
     def __solidcolor(self) -> None:
         
         #turns the white on or off
-        if self.__inputData["button3"] == "True":
+        if inputs["button3"] == "True":
             self.__solidWhite = (self.__solidWhite + 1) % 2
 
         #empty array to store color
@@ -91,19 +88,20 @@ class ledController:
 
         #add rgb colors
         for i in range(2, -1, -1):
-            color.append(float(self.__inputData[f"pot{i}"]) * 255)
+            color.append(float(inputs[f"pot{i}"]) * 255)
         
         color.append(255 * self.__solidWhite)
 
         self.__pixels.fill(color)
 
 leds = ledController()
+serialPort = serialMonitor()
+inputs = serialPort.readSerial()
+
+inputThrd = Thread(target=updateInputs)
+inputThrd.start()
 
 while True:
 
     leds.update()
-
-
-
-
 
