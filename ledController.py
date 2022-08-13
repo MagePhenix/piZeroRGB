@@ -91,6 +91,8 @@ class ledController:
         
         color.append(255 * self.__solidWhite)
 
+        print(color)
+
         self.__pixels.fill(color)
 
 leds = ledController()
