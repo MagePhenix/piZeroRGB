@@ -106,8 +106,6 @@ class ledController:
     def update(self) -> None:
 
         self.__updateInputs()
-
-        print(self.cleanedInputs['button0'].val)
         
         #change mode if the first button is pressed
         if self.cleanedInputs['button0'].val:
@@ -116,8 +114,7 @@ class ledController:
         #run the update function
         self.__modes[self.__updateIndex]()
 
-        print(self.__updateIndex)
-
+        self.__pixels.show()
 
 
     def __colorCycle(self) -> None:
