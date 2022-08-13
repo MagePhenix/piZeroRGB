@@ -35,7 +35,6 @@ class serialMonitor:
 
             self.__data[name] = value
 
-        print(self.__data)
         return self.__data
 
 class button:
