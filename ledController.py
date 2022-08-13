@@ -31,7 +31,7 @@ class serialMonitor:
 
         #process data into dictonary
         for i in dataArr:
-            name,value = i.split[':'][:2]
+            name,value = i.split(':')[:2]
 
             self.__data[name] = value
 
