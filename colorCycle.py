@@ -1,6 +1,3 @@
-import imp
-from locale import setlocale
-from turtle import width
 import colorManagement
 from typing import List, Tuple
 import time

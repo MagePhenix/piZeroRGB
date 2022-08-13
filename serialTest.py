@@ -1,6 +1,3 @@
-from ast import Str
-import re
-from sys import byteorder
 import serial
 import time
 
@@ -19,7 +16,7 @@ class serialMonitor:
         self.ser.write(input.encode('utf-8'))
 
         input = self.ser.read_until()
-        inputArr = input.decode("utf-8").split(',')
+        inputArr = input.decode("utf-8").split(',')[:-1]
 
         return inputArr
 
