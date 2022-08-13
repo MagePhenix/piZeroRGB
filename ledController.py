@@ -9,7 +9,7 @@ class serialMonitor:
         self.__lastChecked = time.thread_time_ns() - (1000000 * minCheckTime)
         self.__minDelay = minCheckTime
         self.__ser = serial.Serial('/dev/serial0', 115200, timeout=1)
-        self.__data = defaultdict('')
+        self.__data = defaultdict(0)
 
     def readSerial(self, input: str = '0'):
 
