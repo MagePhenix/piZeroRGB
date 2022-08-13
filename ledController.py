@@ -61,8 +61,6 @@ class ledController:
         #read in inputs
         self.__inputData = inputs.readSerial()
 
-        print(self.__inputData)
-
         #change mode if the first button is pressed
         if bool(self.__inputData['button0']):
             self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes) 
@@ -92,6 +90,8 @@ class ledController:
             color.append(float(self.__inputData[f"pot{i}"]) * 255)
         
         color.append(255 * self.__solidWhite)
+
+        print(color)
 
         self.__pixels.fill(color)
 
