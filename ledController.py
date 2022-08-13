@@ -35,6 +35,7 @@ class serialMonitor:
 
             self.__data[name] = value
 
+        print(self.__data)
         return self.__data
 
 inputs = serialMonitor()
@@ -61,13 +62,9 @@ class ledController:
         #read in inputs
         self.__inputData = inputs.readSerial()
 
-        print(bool(self.__inputData['button0']))
-
         #change mode if the first button is pressed
         if bool(self.__inputData['button0']):
             self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes) 
-
-        print(self.__updateIndex)
 
         #run the update function
         self.__modes[self.__updateIndex]()
