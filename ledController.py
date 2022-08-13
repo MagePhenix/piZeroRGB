@@ -111,6 +111,7 @@ class ledController:
             self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes)
 
         self.inputs = serialPort.readSerial()
+        print(self.__updateIndex)
 
         #run the update function
         self.__modes[self.__updateIndex]()
