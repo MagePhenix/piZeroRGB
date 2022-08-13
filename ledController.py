@@ -24,7 +24,7 @@ class serialMonitor:
         self.__ser.write(input.encode('utf-8'))
 
         #read data
-        rawData = self.__ser.read_until()
+        rawData = self.__ser.readline()
 
         #transform data into array
         dataArr = rawData.decode("utf-8").split(',')[:-1]
@@ -140,7 +140,7 @@ class ledController:
 
         self.__pixels.fill(color)
 
-serialPort = serialMonitor()
+serialPort = serialMonitor(0)
 inputs = serialPort.readSerial()
 
 leds = ledController()
