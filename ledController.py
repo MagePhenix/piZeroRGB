@@ -1,7 +1,7 @@
 from collections import defaultdict
-import colorManagement
-import serial
-import time
+from typing import List
+import colorCycle, colorManagement, serial, time, board
+from neopixel import NeoPixel
 
 class serialMonitor:
 
@@ -11,7 +11,7 @@ class serialMonitor:
         self.__ser = serial.Serial('/dev/serial0', 115200, timeout=1)
         self.__data = defaultdict(None)
 
-    def readSerial(self, input: str = '0'):
+    def readSerial(self, input: str = '0') -> dict:
 
         #ensure that data is not being requested too often
         if ((((time.time_ns() - self.__lastChecked) / 1000000) < self.__minDelay)):
@@ -39,12 +39,65 @@ class serialMonitor:
 
 inputs = serialMonitor()
 
+class ledController:
+
+    def __init__(self, ) -> None:
+        self.__pixels = NeoPixel(board.D18, 118, auto_write=False, bpp=4)
+
+        self.__modes = [
+
+            self.__colorCycle,
+            self.__solidcolor
+        ]
+
+        self.__updateIndex = 0
+
+        self.__inputData = inputs.readSerial()
+
+        self.__solidWhite = 0
+
+    def update(self) -> None:
+        
+        #read in inputs
+        self.__inputData = inputs.readSerial()
+
+        #change mode if the first button is pressed
+        if self.__inputData['button0']:
+            self.__updateIndex += 1
+
+        #run the update function
+        self.__modes[self.__updateIndex]()
+
+
+
+    def __colorCycle(self) -> List():
+        pass
+
+    def __solidFading(self) -> List():
+        pass
+
+    def __solidcolor(self) -> List():
+        
+        #turns the white on or off
+        if self.__inputData["button3"]:
+            self.__solidWhite = (self.__solidWhite + 1) % 2
+
+        #empty array to store color
+        color = []
+
+        #add rgb colors
+        for i in range(2, -1, -1):
+            color.append(self.__inputData[f"pot{i}"] * 255)
+        
+        color.append(255 * self.__solidWhite)
+
+        self.__pixels.fill(color)
+
+leds = ledController()
+
 while True:
 
-    time.sleep(2)
-
-    print(inputs.readSerial())
-
+    leds.update()
 
 
 

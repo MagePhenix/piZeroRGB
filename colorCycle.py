@@ -106,9 +106,3 @@ class colorCycle:
             colorList.append(tuple(rgbVals))
                 
         return colorList
-
-# rgbCycle = colorCycle(["red", "blue"], 1, 3, 0, brightness=.4)
-
-# while True:
-#     print(rgbCycle.getStep())
-#     time.sleep(.1)
