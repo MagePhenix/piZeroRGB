@@ -41,25 +41,30 @@ class serialMonitor:
 class button:
     def __init__(self) -> None:
         self.__prevState = False
+        val = False
 
     def getVal(self, val) -> Boolean:
         if ((val == "True") & self.__prevState != True):
             self.__prevState = True
-            return True
+            val = True
         else:
             if val == "False":
                 self.__prevState = False
 
-            return False
+            val = False
 
 class pot:
+
+    def __init__(self) -> None:
+        val = 0
+
     def getVal(self, val) -> float:
 
         try:
-            return float(val)
+            val = float(val)
         
         except:
-            return 0
+            val = 0
 
 def updateInputs():
     while True:
@@ -85,6 +90,7 @@ class ledController:
 
     def __setInputs(self):
         self.cleanedInputs = {}
+        self.inputValues = {}
 
         for i in inputs.keys():
             if "pot" in i:
@@ -102,7 +108,7 @@ class ledController:
         self.__updateInputs()
         
         #change mode if the first button is pressed
-        if self.cleanedInputs['button0']:
+        if self.cleanedInputs['button0'].val:
             self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes) 
 
         #run the update function
@@ -121,7 +127,7 @@ class ledController:
     def __solidcolor(self) -> None:
         
         #turns the white on or off
-        if self.cleanedInputs["button3"]:
+        if self.cleanedInputs["button3"].val:
             self.__solidWhite = (self.__solidWhite + 1) % 2
 
         #empty array to store color
@@ -129,7 +135,7 @@ class ledController:
 
         #add rgb colors
         for i in range(2, -1, -1):
-            color.append(self.cleanedInputs[f"pot{i}"] * 255)
+            color.append(self.cleanedInputs[f"pot{i}"].val * 255)
         
         color.append(255 * self.__solidWhite)
 
