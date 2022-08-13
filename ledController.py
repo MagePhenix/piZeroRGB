@@ -61,11 +61,11 @@ class ledController:
         #read in inputs
         self.__inputData = inputs.readSerial()
 
-        print(self.__inputData)
+        print(bool(self.__inputData['button0']))
 
         #change mode if the first button is pressed
         if bool(self.__inputData['button0']):
-            self.__updateIndex += 1
+            self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes) 
 
         print(self.__updateIndex)
 
