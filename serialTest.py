@@ -25,8 +25,10 @@ mon = serialMonitor()
 
 ser = serial.Serial('/dev/serial0', 1152000, timeout=1)
 
+end = time.time() + .1
+
 while True:
 
-    start = time.time()
-    print(ser.read_until().decode("utf-8"))
-    print(time.time() - start)
+    if(time.time > end):
+        print(ser.read_until().decode("utf-8"))
+        end = time.time() + .1
