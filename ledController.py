@@ -70,13 +70,13 @@ class ledController:
 
 
 
-    def __colorCycle(self) -> List():
+    def __colorCycle(self) -> None:
         pass
 
-    def __solidFading(self) -> List():
+    def __solidFading(self) -> None:
         pass
 
-    def __solidcolor(self) -> List():
+    def __solidcolor(self) -> None:
         
         #turns the white on or off
         if self.__inputData["button3"]:
