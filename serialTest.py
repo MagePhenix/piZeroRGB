@@ -5,12 +5,12 @@ import time
 class serialMonitor:
 
     def __init__(self) -> None:
-        self.lastChecked = time.time_ns() - (1000000 * 100)
+        self.lastChecked = time.time_ns() - (1000000 * 0)
         self.ser = serial.Serial('/dev/serial0', 1152000, timeout=1)
         self.data = ""
 
     def getValues(self, input = '0'):
-        if ((time.time_ns() - self.lastChecked) / 1000000) < 100:
+        if ((time.time_ns() - self.lastChecked) / 1000000) < 0:
             return self.data
 
         # self.ser.write(input.encode('utf-8'))
