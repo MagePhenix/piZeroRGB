@@ -22,6 +22,8 @@ class serialMonitor:
 
 mon = serialMonitor()
 
+ser = serial.Serial('/dev/serial0', 115200, timeout=1)
+
 while True:
 
-    print(mon.getValues(input("Send: ")))
+    print(ser.read_until().decode("utf-8"))
