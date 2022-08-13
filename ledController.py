@@ -9,7 +9,7 @@ class serialMonitor:
         self.__lastChecked = time.thread_time_ns() - (1000000 * minCheckTime)
         self.__minDelay = minCheckTime
         self.__ser = serial.Serial('/dev/serial0', 115200, timeout=1)
-        self.__data = defaultdict(None)
+        self.__data = {}
 
     def readSerial(self, input: str = '0') -> dict:
 
@@ -35,7 +35,6 @@ class serialMonitor:
 
             self.__data[name] = value
 
-        print(self.__data)
         return self.__data
 
 inputs = serialMonitor()
@@ -61,6 +60,8 @@ class ledController:
         
         #read in inputs
         self.__inputData = inputs.readSerial()
+
+        print(self.__inputData)
 
         #change mode if the first button is pressed
         if bool(self.__inputData['button0']):
