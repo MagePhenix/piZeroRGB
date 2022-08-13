@@ -44,7 +44,7 @@ class button:
         self.val = False
 
     def getVal(self, newVal) -> Boolean:
-        if ((newVal == "True") & self.__prevState != True):
+        if ((newVal == "True") & (not self.__prevState)):
             self.__prevState = True
             self.val = True
         else:
