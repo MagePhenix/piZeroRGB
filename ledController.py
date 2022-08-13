@@ -38,7 +38,8 @@ class serialMonitor:
         return self.__data
 
 def updateInputs():
-    inputs = serialPort.readSerial()
+    while True:
+        inputs = serialPort.readSerial()
 
 class ledController:
 
