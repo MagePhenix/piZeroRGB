@@ -24,12 +24,8 @@ class serialMonitor:
         #send request for data
         self.__ser.write(input.encode('utf-8'))
 
-        start = time.time()
-
         #read data
         rawData = self.__ser.read_until()
-
-        print(time.time() - start)
 
         #transform data into array
         dataArr = rawData.decode("utf-8").split(',')[:-1]
@@ -68,6 +64,8 @@ class ledController:
 
         #run the update function
         self.__modes[self.__updateIndex]()
+
+        print(self.__updateIndex)
 
 
 
