@@ -15,7 +15,7 @@ class serialMonitor:
         if ((time.time_ns() - self.lastChecked) / 1000000) < 100:
             return self.data
 
-        self.ser.write(1)
+        self.ser.write('0'.encode('utf-8'))
 
         input = self.ser.read_until()
         inputArr = input.decode("utf-8").split(',')
