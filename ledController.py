@@ -23,8 +23,12 @@ class serialMonitor:
         #send request for data
         self.__ser.write(input.encode('utf-8'))
 
+        start = time.time()
+
         #read data
         rawData = self.__ser.read_until()
+
+        print(time.time() - start)
 
         #transform data into array
         dataArr = rawData.decode("utf-8").split(',')[:-1]
@@ -58,11 +62,8 @@ class ledController:
 
     def update(self) -> None:
         
-        print("start read")
         #read in inputs
         self.__inputData = inputs.readSerial()
-
-        print(self.__updateIndex)
 
         #change mode if the first button is pressed
         if (self.__inputData['button0'] == "True"):
