@@ -95,7 +95,7 @@ class ledController:
     def __updateInputs(self):
 
         for i in inputs.keys():
-            self.cleanedInputs[i].update(inputs[i])
+            self.cleanedInputs[i].getVal(inputs[i])
 
     def update(self) -> None:
 
