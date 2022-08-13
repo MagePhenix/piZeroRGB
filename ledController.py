@@ -57,15 +57,14 @@ class ledController:
         self.__solidWhite = 0
 
     def update(self) -> None:
-
-        print(self.__updateIndex)
-        print(bool(self.__inputData['button0']))
         
         #read in inputs
         self.__inputData = inputs.readSerial()
 
+        print(self.__updateIndex)
+
         #change mode if the first button is pressed
-        if bool(self.__inputData['button0']):
+        if (self.__inputData['button0'] == "False"):
             self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes) 
 
         #run the update function
@@ -82,7 +81,7 @@ class ledController:
     def __solidcolor(self) -> None:
         
         #turns the white on or off
-        if self.__inputData["button3"]:
+        if self.__inputData["button3"] == "True":
             self.__solidWhite = (self.__solidWhite + 1) % 2
 
         #empty array to store color
