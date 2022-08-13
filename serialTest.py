@@ -29,6 +29,6 @@ end = time.time() + .1
 
 while True:
 
-    if(time.time > end):
+    if(time.time() > end):
         print(ser.read_until().decode("utf-8"))
         end = time.time() + .1
