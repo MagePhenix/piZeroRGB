@@ -64,7 +64,7 @@ class ledController:
         print(self.__inputData)
 
         #change mode if the first button is pressed
-        if self.__inputData['button0']:
+        if bool(self.__inputData['button0']):
             self.__updateIndex += 1
 
         print(self.__updateIndex)
@@ -91,7 +91,7 @@ class ledController:
 
         #add rgb colors
         for i in range(2, -1, -1):
-            color.append(self.__inputData[f"pot{i}"] * 255)
+            color.append(float(self.__inputData[f"pot{i}"]) * 255)
         
         color.append(255 * self.__solidWhite)
 
