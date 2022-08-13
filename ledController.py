@@ -65,10 +65,10 @@ class pot:
         except:
             self.val = 0
 
-def updateInputs():
-    while True:
-        global inputs
-        inputs = serialPort.readSerial()
+# def updateInputs():
+#     while True:
+#         global inputs
+#         inputs = serialPort.readSerial()
 
 class ledController:
 
@@ -85,22 +85,22 @@ class ledController:
 
         self.__solidWhite = 0
 
-        self.__setInputs()
+        # self.__setInputs()
 
-    def __setInputs(self):
-        self.cleanedInputs = {}
-        self.inputValues = {}
+    # def __setInputs(self):
+    #     self.cleanedInputs = {}
+    #     self.inputValues = {}
 
-        for i in inputs.keys():
-            if "pot" in i:
-                self.cleanedInputs[i] = pot()
-            else:
-                self.cleanedInputs[i] = button()
+    #     for i in inputs.keys():
+    #         if "pot" in i:
+    #             self.cleanedInputs[i] = pot()
+    #         else:
+    #             self.cleanedInputs[i] = button()
 
-    def __updateInputs(self):
+    # def __updateInputs(self):
 
-        for i in inputs.keys():
-            self.cleanedInputs[i].getVal(inputs[i])
+    #     for i in inputs.keys():
+    #         self.cleanedInputs[i].getVal(inputs[i])
 
     def update(self) -> None:
 
@@ -140,12 +140,12 @@ class ledController:
         self.__pixels.fill(color)
 
 serialPort = serialMonitor(0)
-inputs = serialPort.readSerial()
+# inputs = serialPort.readSerial()
 
 leds = ledController()
 
-inputThrd = Thread(target=updateInputs)
-inputThrd.start()
+# inputThrd = Thread(target=updateInputs)
+# inputThrd.start()
 
 while True:
 
