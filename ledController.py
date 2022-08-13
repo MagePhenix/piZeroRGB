@@ -105,12 +105,13 @@ class ledController:
     def update(self) -> None:
 
         # self.__updateInputs()
+
+        self.inputs = serialPort.readSerial()
         
         #change mode if the first button is pressed
         if self.inputs['button0'] == "True":
             self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes)
 
-        self.inputs = serialPort.readSerial()
         print(self.__updateIndex)
 
         #run the update function
