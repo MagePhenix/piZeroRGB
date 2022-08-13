@@ -26,4 +26,6 @@ ser = serial.Serial('/dev/serial0', 1152000, timeout=1)
 
 while True:
 
-    print(ser.read_until().decode("utf-8"))
+    start = time.time()
+    ser.read_until().decode("utf-8")
+    print(time.time() - start)
