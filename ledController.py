@@ -58,6 +58,7 @@ class ledController:
 
     def update(self) -> None:
         
+        print("start read")
         #read in inputs
         self.__inputData = inputs.readSerial()
 
