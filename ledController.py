@@ -57,6 +57,9 @@ class ledController:
         self.__solidWhite = 0
 
     def update(self) -> None:
+
+        print(self.__updateIndex)
+        print(bool(self.__inputData['button0']))
         
         #read in inputs
         self.__inputData = inputs.readSerial()
@@ -90,8 +93,6 @@ class ledController:
             color.append(float(self.__inputData[f"pot{i}"]) * 255)
         
         color.append(255 * self.__solidWhite)
-
-        print(color)
 
         self.__pixels.fill(color)
 
