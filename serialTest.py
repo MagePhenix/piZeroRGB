@@ -10,9 +10,6 @@ class serialMonitor:
         self.data = ""
 
     def getValues(self, input = '0'):
-        if ((time.time_ns() - self.lastChecked) / 1000000) < 0:
-            return self.data
-
         # self.ser.write(input.encode('utf-8'))
 
         self.ser.reset_input_buffer()
