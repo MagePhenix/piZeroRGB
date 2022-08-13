@@ -135,9 +135,10 @@ class ledController:
 
         self.__pixels.fill(color)
 
-leds = ledController()
 serialPort = serialMonitor()
 inputs = serialPort.readSerial()
+
+leds = ledController()
 
 inputThrd = Thread(target=updateInputs)
 inputThrd.start()
