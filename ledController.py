@@ -104,11 +104,13 @@ class ledController:
 
     def update(self) -> None:
 
-        self.__updateInputs()
+        # self.__updateInputs()
         
         #change mode if the first button is pressed
-        if self.cleanedInputs['button0'].val:
-            self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes) 
+        if self.inputs['button0'] == "True":
+            self.__updateIndex = (self.__updateIndex + 1) % len(self.__modes)
+
+        self.inputs = serialPort.readSerial()
 
         #run the update function
         self.__modes[self.__updateIndex]()
@@ -125,7 +127,7 @@ class ledController:
     def __solidcolor(self) -> None:
         
         #turns the white on or off
-        if self.cleanedInputs["button3"].val:
+        if self.inputs["button3"] == "True":
             self.__solidWhite = (self.__solidWhite + 1) % 2
 
         #empty array to store color
@@ -133,7 +135,7 @@ class ledController:
 
         #add rgb colors
         for i in range(2, -1, -1):
-            color.append(self.cleanedInputs[f"pot{i}"].val * 255)
+            color.append(float(self.inputs[f"pot{i}"]) * 255)
         
         color.append(255 * self.__solidWhite)
 
