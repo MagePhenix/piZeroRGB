@@ -1,80 +1,83 @@
 import keyboard
-from threading import Thread
 from time import sleep
+from customThreading import threadController
 
 
-keyMappings = {
-    'a':[print],
-    'b':[],
-    'c':[],
-    'esc':[]
-}
+def sampleFunction1():
+    print("1", end="")
+    sleep(.1)
 
-class keyControlledThrd:
+def sampleFunction2():
+    print("2", end="")
+    sleep(.1)
 
-    def __init__(self) -> None:
+def sampleFunction3():
+    print("3", end="")
+    sleep(.1)
+
+def sampleFunction4():
+    print("4", end="")
+    sleep(.1)
+
+
+class keyManager:
+
+    def __init__(self, keyMap: dict) -> None:
+        self.keyMap = keyMap
+
+        self.__threadManager = threadController()
+
+    def awaitKey(self):
         """
-        Sets up thread variables
-        """
-
-        #flag for the thread
-        self.keepRunning = False
-        
-        #creates initial thread object
-        self.t1 = Thread(target=(self.__threadRunner), args=(None,))
-        #starts first thread
-        self.t1.start()
-
-    def __threadRunner(self, funct):
-        """
-        Runs function until keepRunning is set to false
-        """
-        while self.keepRunning:
-            funct()
-
-    def startNewThrd(self, funct):
-        """
-        Stops previous thread and runs new function
+        Waits for a key press and runs the associated funciton
         """
 
-        #checks to make sure a function was passed
-        if not callable(funct):
+        key = keyboard.read_event(True)
+        isNumpad = 0
+
+        #fails out if there is no mapping or the key is being pressed initially
+        if (key.name not in self.keyMap.keys()) | (key.event_type == "down"):
             return
 
-        #flags thread to stop
-        self.keepRunning = False
+        #sets whether the key is on the numpad or not
+        if key.is_keypad:
+            isNumpad = 1
 
-        #waits for the thread to end
-        self.t1.join()
+        print("\n-----------------")
 
-        #resets thread flag
-        self.keepRunning = True
 
-        #creates new thread with function
-        self.t1 = Thread(target=(self.__threadRunner), args=(funct,))
+        #gets function list from dictionary
+        functList = self.keyMap[key.name]
+        #gets function from map
+        newFunct = functList[isNumpad % len(functList)]
 
-        #runs new thread
-        self.t1.start()
+        #calls thread manager to start new thread
+        self.__threadManager.startNewThrd(newFunct)
 
-    def endThrd(self):
+    def exit(self):
         """
-        Stops running thrd
+        closes any running threads
         """
-        self.keepRunning = False
-        self.t1.join()
+
+        self.__threadManager.endThrd()
         
 
-print("Starting...")
+keyMappings = {
+    '1':[sampleFunction1],
+    '2':[sampleFunction2, sampleFunction3],
+    'c':[sampleFunction4]
+}
 
-ledString = keyControlledThrd()
 
-ledString.startNewThrd(print)
+print("Start")
+keyWatch = keyManager(keyMappings)
 
-sleep(.001)
+for i in range(20):
+    keyWatch.awaitKey()
 
-ledString.endThrd()
+keyWatch.exit()
 
-print("Done")
+print("Exit")
 
 
 
