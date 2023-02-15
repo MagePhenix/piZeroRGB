@@ -2,6 +2,7 @@ from customThreading import ThreadController
 from keyboard import read_event as kbEvent
 from colorCycle import colorCycle
 from threadedLEDUpdater import ledUpdater
+from time import sleep
 
 class keyBoardControlledLEDs:
     
@@ -100,6 +101,9 @@ class keyBoardControlledLEDs:
         
         #blacks leds
         self.__updateBrightness(0)
+
+        #pauses to give leds time to update
+        sleep(.1)
 
         #stops thrd
         self.__threadManager.endThrd()
