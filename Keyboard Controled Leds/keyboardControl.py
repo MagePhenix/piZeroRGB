@@ -25,6 +25,9 @@ class keyBoardControlledLEDs:
             'num2' : self.__selectPallett,
             'num3' : self.__selectPallett,
             'num4' : self.__selectPallett,
+            'num5' : self.__selectPallett,
+            'num6' : self.__selectPallett,
+            'num7' : self.__selectPallett,
             'num-' : self.__updateBrightness,
             'num+' : self.__updateBrightness,
             'num0' : self.__toggleOnOff
