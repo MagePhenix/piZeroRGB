@@ -40,12 +40,8 @@ class keyBoardControlledLEDs:
         Waits for a valid key press and runs appropriate function in response
         """
 
-        print("ran update")
-
         #gets keypress
         self.__awaitValidKeyRelease()
-
-        print("got key")
 
         #runs appropriate function
         self.__keyMap[self.__pressedKey]()
@@ -63,7 +59,7 @@ class keyBoardControlledLEDs:
             print(key)
 
             #exits the loop when a key in the key map is released
-            if (key.event_type == "up") & (key.name in self.__keyMap.keys()):
+            if (key.event_type == "up") & ((("num" if key.is_keypad else "") + key.name) in self.__keyMap.keys()):
                 break
 
         #sets pressed key value
