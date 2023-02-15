@@ -4,12 +4,12 @@ import board
 
 class ledUpdater:
 
-    def __init__(self, stringLength: int = 177) -> None:
+    def __init__(self, pixels: NeoPixel) -> None:
         self.__cycle = None
         self.whiteBrightness = 0
         self.__brightness = .2
 
-        self.__pixels = NeoPixel(board.D18, stringLength, auto_write=False, bpp=4)
+        self.__pixels = pixels
 
     def setLeds(self):
 

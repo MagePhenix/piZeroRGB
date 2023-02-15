@@ -3,16 +3,21 @@ from keyboard import read_event as kbEvent
 from colorCycle import colorCycle
 from threadedLEDUpdater import ledUpdater
 from time import sleep
+from neopixel import NeoPixel
+import board
 
 class keyBoardControlledLEDs:
     
-    def __init__(self) -> None:
+    def __init__(self, stringLength: int = 177) -> None:
 
         #creates thread manager
         self.__threadManager = ThreadController()
 
         #the most recently pressed key
         self.__pressedKey = None
+
+        #neo pixel string
+        self.__pixels = NeoPixel(board.D18, stringLength, auto_write=False, bpp=4)
 
         #what function each key maps to
         self.__keyMap = {
@@ -35,7 +40,7 @@ class keyBoardControlledLEDs:
         }
 
         #object for threaded led updating
-        self.__ledUpdater = ledUpdater()
+        self.__ledUpdater = ledUpdater(self.__pixels)
 
         #stores led brightness
         self.__ledBrigthness = .1
@@ -60,8 +65,6 @@ class keyBoardControlledLEDs:
 
             #waits for a keybaord event to occur
             key = kbEvent(True)
-
-            print(key)
 
             #exits the loop when a key in the key map is released
             if (key.event_type == "up") & ((("num" if key.is_keypad else "") + key.name) in self.__keyMap.keys()):
@@ -98,18 +101,13 @@ class keyBoardControlledLEDs:
         self.__ledBrigthness = self.__ledUpdater.getBrightness()
 
     def __toggleOnOff(self):
-        
-        #blacks leds
-        self.__updateBrightness(0)
-
-        #pauses to give leds time to update
-        sleep(.1)
 
         #stops thrd
         self.__threadManager.endThrd()
 
-        #returns brightness to normal
-        self.__updateBrightness(self.__ledBrigthness)
+        #clears pixels
+        self.__pixels.fill([0,0,0,0])
+        self.__pixels.show()
 
         #stores the value for this function in the map
         onOffKey = self.__pressedKey
