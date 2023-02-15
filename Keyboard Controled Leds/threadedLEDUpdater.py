@@ -13,7 +13,7 @@ class ledUpdater:
 
     def setLeds(self):
 
-        step = self.__cycle(whiteValue=self.whiteBrightness)
+        step = self.__cycle.getStep(whiteValue=self.whiteBrightness)
 
         for i in range(len(self.__pixels)):
             self.__pixels[i] = step[i % len(step)]
