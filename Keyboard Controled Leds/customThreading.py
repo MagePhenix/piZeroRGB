@@ -14,6 +14,9 @@ class ThreadController:
         self.t1 = Thread(target=(self.__threadRunner), args=(None,))
         #starts first thread
         self.t1.start()
+
+        #stored function
+        self.__funct = None
         
 
     def __threadRunner(self, funct):
@@ -31,6 +34,9 @@ class ThreadController:
         #checks to make sure a function was passed
         if not callable(funct):
             return
+
+        #stores the function
+        self.__funct = funct
 
         #flags thread to stop
         self.keepRunning = False
@@ -53,3 +59,11 @@ class ThreadController:
         """
         self.keepRunning = False
         self.t1.join()
+
+    def repeatLastThrd(self):
+        """
+        runs the last thread again
+        """
+
+        if self.__funct:
+            self.startNewThrd(self.__funct)

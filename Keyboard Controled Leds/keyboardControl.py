@@ -83,3 +83,19 @@ class keyBoardControlledLEDs:
         elif self.__pressedKey == 'num+' : sign = 1
 
         self.__ledUpdater.setBrightness(self.__ledUpdater.getBrightness() + (value * sign))
+
+    def __toggleOnOff(self):
+        
+        #stops thrd
+        self.__threadManager.endThrd()
+
+        #stores the value for this function in the map
+        onOffKey = self.__pressedKey
+
+        while True:
+            self.__awaitValidKeyRelease()
+            if self.__pressedKey == onOffKey:
+                break
+
+        #restarts thrd
+        self.__threadManager.repeatLastThrd()
