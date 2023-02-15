@@ -33,10 +33,15 @@ class keyBoardControlledLEDs:
 
         #what cycle each key maps to
         self.__cycleKeyMap = {
-            'num1' : colorCycle(["red", "green", "blue"], .1, 3, 15, brightness=.2),
+            'num1' : colorCycle(["red", "green", "blue"], .1, 15, 15, brightness=.2),
             'num2' : colorCycle(["#FF5400","#6B4AFF","#00FFB8"], .1, 10, 50, brightness=.2),
             'num3' : colorCycle(["#FF00AA","#2000FF","#FF0030"], .1, 10, 50, brightness=.1),
             'num4' : colorCycle(["#3030FF","#FF0099","#DDDDDD", "FF0099", "3030FF"], .1, 5, 10, brightness=.2),
+            'num5' : colorCycle(["#3300FF","#202080","#FF00D0", "#0000FF"], .1, 0, 40, brightness=.2),
+            'num6' : colorCycle(["#00FF00","#00FFA8","#50FF00"], .1, 20, 20, brightness=.2),
+            'num7' : colorCycle(["#00FF00","#FF6600","#00ff80"], .1, 5, 30, brightness=.2)
+            # 'num8' : 
+            # 'num9' : 
         }
 
         #object for threaded led updating
@@ -120,3 +125,5 @@ class keyBoardControlledLEDs:
 
         #restarts thrd
         self.__threadManager.repeatLastThrd()
+
+
