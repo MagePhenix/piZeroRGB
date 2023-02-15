@@ -81,6 +81,8 @@ class keyBoardControlledLEDs:
 
     def __updateBrightness(self, value: float = None):
 
+        print(value)
+
         #sets the brightness by value
         if value:
             self.__ledUpdater.setBrightness(value)
