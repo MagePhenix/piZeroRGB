@@ -1,7 +1,6 @@
 from threading import Thread
 
-
-class threadController:
+class ThreadController:
 
     def __init__(self) -> None:
         """
@@ -15,6 +14,7 @@ class threadController:
         self.t1 = Thread(target=(self.__threadRunner), args=(None,))
         #starts first thread
         self.t1.start()
+        
 
     def __threadRunner(self, funct):
         """

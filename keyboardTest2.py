@@ -1,6 +1,6 @@
 import keyboard
 from time import sleep
-from customThreading import threadController
+from customThreading import ThreadController
 
 
 def sampleFunction1():
@@ -25,7 +25,7 @@ class keyManager:
     def __init__(self, keyMap: dict) -> None:
         self.keyMap = keyMap
 
-        self.__threadManager = threadController()
+        self.__threadManager = ThreadController()
 
     def awaitKey(self):
         """
