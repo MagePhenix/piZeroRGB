@@ -36,6 +36,9 @@ class keyBoardControlledLEDs:
         #object for threaded led updating
         self.__ledUpdater = ledUpdater()
 
+        #stores led brightness
+        self.__ledBrigthness = .1
+
     def updateByKey(self):
         """
         Waits for a valid key press and runs appropriate function in response
@@ -76,8 +79,14 @@ class keyBoardControlledLEDs:
         if not self.__threadManager.keepRunning:
             self.__threadManager.startNewThrd(self.__ledUpdater.setLeds)
 
-    def __updateBrightness(self):
+    def __updateBrightness(self, value: float = None):
 
+        #sets the brightness by value
+        if value:
+            self.__ledUpdater.setBrightness(value)
+            return
+
+        #if not increments the brightness
         value = .1
 
         if self.__pressedKey == 'num-': sign = -1
@@ -85,13 +94,22 @@ class keyBoardControlledLEDs:
 
         self.__ledUpdater.setBrightness(self.__ledUpdater.getBrightness() + (value * sign))
 
+        self.__ledBrigthness = self.__ledUpdater.getBrightness()
+
     def __toggleOnOff(self):
         
+        #blacks leds
+        self.__updateBrightness(0)
+
         #stops thrd
         self.__threadManager.endThrd()
 
+        #returns brightness to normal
+        self.__updateBrightness(self.__ledBrigthness)
+
         #stores the value for this function in the map
         onOffKey = self.__pressedKey
+
 
         while True:
             self.__awaitValidKeyRelease()
