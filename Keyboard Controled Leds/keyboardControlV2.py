@@ -80,6 +80,8 @@ class keyBoardControlledLEDs:
             #waits for a keybaord event to occur
             key = kbEvent(True)
 
+            print(key.name)
+
             #exits the loop when a key in the key map is released
             if (key.event_type == "up") & ((("num" if key.is_keypad else "") + key.name) in self.__keyMap.keys()):
                 break
