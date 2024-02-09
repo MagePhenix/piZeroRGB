@@ -32,21 +32,16 @@ class keyBoardControlledLEDs:
         self.__colorCycles = [
             #generic rainbow
             colorCycle(["red", "green", "blue"], .1, 15, 15, brightness=1),
-            colorCycle(["red", "green", "blue"], .01, 15, 15, brightness=1),
-            #white, orange, cyan
-            colorCycle(["orange","white","#cyan"], .1, 10, 50, brightness=.2),
             #very pink
             colorCycle(["#FF00AA","#2000FF","#FF0030"], .1, 10, 50, brightness=.1),
             #trans
             colorCycle(["#3030FF","#FF0099","#DDDDDD", "FF0099", "3030FF"], .1, 5, 10, brightness=.2),
-            #pink blue
-            colorCycle(["#3300FF","#202080","#FF00D0", "#0000FF"], .1, 0, 40, brightness=.2),
             #mostly green
             colorCycle(["#00FF00","#00FFA8","#50FF00"], .1, 20, 20, brightness=.2),
             #green cyan orange
             colorCycle(["#00FF00","#FF6600","#00ff80"], .1, 5, 30, brightness=.2),
             #mostly blue orange
-            colorCycle(["#0000AA","#0000FF", "#0000AA", "#FF6600", "#0000AA", "#FF3300"], cycleTime=.3, width=1, step=10)
+            colorCycle(["#0000AA", "#0000FF", "#0000FF", "#0000FF", "#0000AA", "#FF6600", "#0000AA", "#0000FF", "#0000AA""#FF3300"], cycleTime=.3, width=1, step=10)
         ]
 
         #tracks the current cycle in use
