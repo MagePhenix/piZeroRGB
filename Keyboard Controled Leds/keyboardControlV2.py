@@ -29,13 +29,24 @@ class keyBoardControlledLEDs:
 
         #all the color cycles that can be called
         self.__colorCycles = [
+            #generic rainbow
             colorCycle(["red", "green", "blue"], .1, 15, 15, brightness=.2),
-            colorCycle(["#FF5400","#6B4AFF","#00FFB8"], .1, 10, 50, brightness=.2),
+            #generic rainbow
+            colorCycle(["red", "green", "blue"], .1, 15, 15, brightness=.8),
+            #white, orange, cyan
+            colorCycle(["orange","white","#cyan"], .1, 10, 50, brightness=.2),
+            #very pink
             colorCycle(["#FF00AA","#2000FF","#FF0030"], .1, 10, 50, brightness=.1),
+            #trans
             colorCycle(["#3030FF","#FF0099","#DDDDDD", "FF0099", "3030FF"], .1, 5, 10, brightness=.2),
+            #pink blue
             colorCycle(["#3300FF","#202080","#FF00D0", "#0000FF"], .1, 0, 40, brightness=.2),
+            #mostly green
             colorCycle(["#00FF00","#00FFA8","#50FF00"], .1, 20, 20, brightness=.2),
-            colorCycle(["#00FF00","#FF6600","#00ff80"], .1, 5, 30, brightness=.2)
+            #green cyan orange
+            colorCycle(["#00FF00","#FF6600","#00ff80"], .1, 5, 30, brightness=.2),
+            #mostly blue orange
+            colorCycle(["#0000FF","#0000FF", "#0000FF", "#FF6600", "#0000FF", "#FF3300"], .08, 3, 60, .2)
         ]
 
         #tracks the current cycle in use
@@ -45,7 +56,7 @@ class keyBoardControlledLEDs:
         self.__ledUpdater = ledUpdater(self.__pixels)
 
         #stores led brightness
-        self.__ledBrigthness = .1
+        self.__ledBrigthness = 1
 
         #start the first cycle
         self.__selectPallett()
