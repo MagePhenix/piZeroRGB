@@ -24,7 +24,7 @@ class keyBoardControlledLEDs:
             'num1' : self.__updateBrightness,
             'num2' : self.__updateBrightness,
             'num3' : self.__updateBrightness,
-            'numdelete' : self.__toggleWhite,
+            'numdecimal' : self.__toggleWhite,
             'numenter' : self.__toggleOnOff
 
         }
