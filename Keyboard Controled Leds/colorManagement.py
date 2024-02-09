@@ -22,7 +22,7 @@ def colorToHex(color: str):
     colors = {
 
     #8 canonical colors
-        "red":"#ff0000",
+    "red":"#ff0000",
     "yellow":"#ffff00",
     "green":"#00ff00",
     "cyan":"#00ffff",
