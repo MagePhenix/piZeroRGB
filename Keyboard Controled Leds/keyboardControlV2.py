@@ -24,6 +24,7 @@ class keyBoardControlledLEDs:
             'num1' : self.__updateBrightness,
             'num2' : self.__updateBrightness,
             'num3' : self.__updateBrightness,
+            'numdelete' : self.__toggleWhite,
             'numenter' : self.__toggleOnOff
 
         }
@@ -116,6 +117,9 @@ class keyBoardControlledLEDs:
         self.__ledBrigthness = self.__ledUpdater.getBrightness()
 
     def __toggleOnOff(self):
+        """
+        Stops everything until the strips are turned back on
+        """
 
         #stops thrd
         self.__threadManager.endThrd()
@@ -131,6 +135,26 @@ class keyBoardControlledLEDs:
         while True:
             self.__awaitValidKeyRelease()
             if self.__pressedKey == onOffKey:
+                break
+
+        #restarts thrd
+        self.__threadManager.repeatLastThrd()
+
+    def __toggleWhite(self):
+
+        #stops thrd
+        self.__threadManager.endThrd()
+
+        #turns pixels white
+        self.__pixels.fill([255, 255, 255, 255])
+        self.__pixels.show()
+
+        #stores the value for this function in the map
+        toggleKey = self.__pressedKey
+
+        while True:
+            self.__awaitValidKeyRelease()
+            if self.__pressedKey == toggleKey:
                 break
 
         #restarts thrd
