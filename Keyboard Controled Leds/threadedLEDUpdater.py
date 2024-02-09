@@ -7,7 +7,7 @@ class ledUpdater:
     def __init__(self, pixels: NeoPixel) -> None:
         self.__cycle = None
         self.whiteBrightness = 0
-        self.__brightness = .2
+        self.__brightness = 1
 
         self.__pixels = pixels
 
@@ -29,7 +29,7 @@ class ledUpdater:
 
         self.__cycle = cycle
 
-    def setBrightness(self, brighness: float = .1):
+    def setBrightness(self, brighness: float = 1):
         """
         sets the Brightness of the led strips
         """

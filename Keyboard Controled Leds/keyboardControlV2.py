@@ -21,8 +21,9 @@ class keyBoardControlledLEDs:
         #what function each key maps to
         self.__keyMap = {
             'num0' : self.__selectPallett,
-            'num-' : self.__updateBrightness,
-            'num+' : self.__updateBrightness,
+            'num1' : self.__updateBrightness,
+            'num2' : self.__updateBrightness,
+            'num3' : self.__updateBrightness,
             'numenter' : self.__toggleOnOff
 
         }
@@ -109,13 +110,12 @@ class keyBoardControlledLEDs:
             self.__ledUpdater.setBrightness(value)
             return
 
-        #if not increments the brightness
-        value = .1
+        if self.__pressedKey == 'num1': intensity = .1
+        elif self.__pressedKey == 'num2' : intensity = .5
+        elif self.__pressedKey == 'num3' : intensity = 1
 
-        if self.__pressedKey == 'num-': sign = -1
-        elif self.__pressedKey == 'num+' : sign = 1
-
-        self.__ledUpdater.setBrightness(self.__ledUpdater.getBrightness() + (value * sign))
+        # self.__ledUpdater.setBrightness(self.__ledUpdater.getBrightness() + (value * sign))
+        self.__ledUpdater.setBrightness(intensity)
 
         self.__ledBrigthness = self.__ledUpdater.getBrightness()
 
