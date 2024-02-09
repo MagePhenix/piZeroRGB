@@ -39,13 +39,16 @@ class keyBoardControlledLEDs:
         ]
 
         #tracks the current cycle in use
-        self.__currentCycleIndex = 0
+        self.__currentCycleIndex = -1
 
         #object for threaded led updating
         self.__ledUpdater = ledUpdater(self.__pixels)
 
         #stores led brightness
         self.__ledBrigthness = .1
+
+        #start the first cycle
+        self.__selectPallett()
 
     def updateByKey(self):
         """
