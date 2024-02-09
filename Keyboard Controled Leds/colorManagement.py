@@ -27,7 +27,7 @@ def colorToHex(color: str):
     "green":"#00ff00",
     "cyan":"#00ffff",
     "blue":"#0000ff",
-    "violet":"#ff00ff",
+    "magenta":"#ff00ff",
     "white":"#ffffff",
     "black":"#000000",
 

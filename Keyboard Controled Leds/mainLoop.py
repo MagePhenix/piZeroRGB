@@ -1,4 +1,4 @@
-from keyboardControl import keyBoardControlledLEDs
+from keyboardControlV2 import keyBoardControlledLEDs
 
 
 leds = keyBoardControlledLEDs()
