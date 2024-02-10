@@ -148,7 +148,7 @@ class keyBoardControlledLEDs:
         self.__threadManager.endThrd()
 
         #turns pixels white
-        self.__pixels.fill((255, 255, 255, 255))
+        self.__pixels.fill((255, 0, 0, 0))
         self.__pixels.show()
 
         #stores the value for this function in the map
