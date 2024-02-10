@@ -142,8 +142,6 @@ class keyBoardControlledLEDs:
 
     def __toggleWhite(self):
 
-        print("reached")
-
         #stops thrd
         self.__threadManager.endThrd()
 
